@@ -1,5 +1,7 @@
 package no.oslomet.cs.algdat.Oblig1;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 ////// Testprogram for Oblig 1 ////////////////////////
@@ -370,7 +372,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 6 //////////////////////////////////////
-    @org.junit.jupiter.api.Test
+    /*@org.junit.jupiter.api.Test
     void oppgave6() {
         int antallFeil = 0;
 
@@ -480,7 +482,7 @@ public class Oblig1Test {
         }
 
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 6");
-    }
+    }*/
 
     ///// Oppgave 7 //////////////////////////////////////
     @org.junit.jupiter.api.Test
@@ -609,7 +611,7 @@ public class Oblig1Test {
     }
 
     ///// Oppgave 8 //////////////////////////////////////
-    @org.junit.jupiter.api.Test
+    /*@org.junit.jupiter.api.Test
     void oppgave8() {
         int antallFeil = 0;
 
@@ -709,10 +711,10 @@ public class Oblig1Test {
         }
 
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 8");
-    }
+    }*/
 
     ///// Oppgave 9 //////////////////////////////////////
-    @org.junit.jupiter.api.Test
+    /*@org.junit.jupiter.api.Test
     void oppgave9() {
         int antallFeil = 0;
 
@@ -934,8 +936,7 @@ public class Oblig1Test {
             antallFeil++;
         }
         assertEquals(0, antallFeil, "Du har for mange feil i oppgave 10");
-    }
-
+    }*/
     ///// Hjelpemetoder /////////////////////////////
 
     public static void bytt(int[] a, int i, int j) {
@@ -982,5 +983,6 @@ public class Oblig1Test {
 
         return a;                        // permutasjonen returneres
     }
+
 
 } // class Oblig1Test

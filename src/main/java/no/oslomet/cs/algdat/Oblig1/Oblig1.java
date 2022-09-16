@@ -14,31 +14,10 @@ public class Oblig1 {
     private Oblig1() {}
 
     ///// Oppgave 1 //////////////////////////////////////
-    public static int[] randPerm(int n)  // en effektiv versjon
-    {
-        Random r;         // en randomgenerator
-        r = new Random();
-        int[] a = new int[n];            // en tabell med plass til n tall
 
-        Arrays.setAll(a, i -> i + 1);    // legger inn tallene 1, 2, . , n
+    public static int maks(int[] a) {       // metoden som finner den største tallet i array
 
-        for (int k = n - 1; k > 0; k--)  // løkke som går n - 1 ganger
-        {
-            int i = r.nextInt(k+1);        // en tilfeldig tall fra 0 til k
-            bytt(a,k,i);                   // bytter om
-        }
-
-        return a;                        // permutasjonen returneres
-    }
-    public static void bytt(int[] a, int i, int j)
-    {
-        int temp = a[i]; a[i] = a[j]; a[j] = temp;
-    }
-
-
-    //********************************************************************
-    public static int maks(int[] a) {
-        if( a.length == 0){ // hvis tabell lengde er 0
+        if( a.length == 0){                 // hvis tabell lengde er 0 dvs tabellen er tomt
             throw new NoSuchElementException
                     ("tomt tabellintervall!");
 
@@ -52,18 +31,18 @@ public class Oblig1 {
             }
         }
 
-        return a[a.length-1]; // vi returnerer største tall
+        return a[a.length-1]; // viser at den største verdien har blitt flyttet på slutten av arrayet
     }
 
     public static int ombyttinger(int[] a) {
 
         //throw new UnsupportedOperationException();
-        if( a.length == 0){ // hvis tabell lengde er 0
+        if( a.length == 0){ // hvis tabell lengde er 0 dvs tabellen er tomt
             throw new NoSuchElementException
                     ("tomt tabellintervall!");
         }
-        int ombytting = 0;
-
+        // samme sorterings metode som i tabell min, men denne gangen er jeg intresert i obyttninger og de skal telles
+        int ombytting = 0;      // begynner å telle ombyttninger fra 0
         for (int i = 0; i < a.length -1; ++i){ // [0: a.length> -1 må være der! husk at array har er siste tom plass!
             if (a[i] > a[i +1]){
                 // hver gang vi møter en større tall, skal de bytte plass, og vi teller ombyttinger
@@ -73,27 +52,32 @@ public class Oblig1 {
                 a[i+1] = temp;
             }
         }
-        return ombytting;
+
+        return ombytting;   //Returnerer antall  obyttninger
     }
 
     ///// Oppgave 2 //////////////////////////////////////
+
+    // hjelpemetoden erSortert() er tatt fra kompendie  1.3.2  Inversjoner og sortering Programkode 1.3.2 c)
+
+
     public static int antallUlikeSortert(int[] a) {
         //throw new UnsupportedOperationException();
-        if( a.length == 0){ // hvis tabell lengde er 0
+        if( a.length == 0){ // hvis tabell lengde er 0- tabellen er tomt
             return 0;
         }
 
         int antallLike = 1;
         // Plukker alle elementene en av gangen start fra 1
         int i = 1;
-        while (i < a.length)
+        while (i < a.length) // looper gjennom løkken
         {
             int j = 0;
-            // start fra første index og loop så lenge j < i
+            // start fra første index av løkka og loop så lenge j < i
             while (j < i)
             {
-                if (a[i] == a[j]) {
-                    // hopp ut av loopen
+                if (a[i] == a[j]) {// hvis a[i] og a[j] er ulike j++ øker og
+                    // Hvis verdiene er like hopp ut av loopen og går videre til andre testen i == j
                     break;
                 }
                 j++;
@@ -110,7 +94,7 @@ public class Oblig1 {
             throw new IllegalStateException
                     ("Array er ikke sortert!");
         }
-
+        // returnerer antal Like
         return antallLike;
 
     }
@@ -125,7 +109,7 @@ public class Oblig1 {
     ///// Oppgave 3 //////////////////////////////////////
     public static int antallUlikeUsortert(int[] a) {
         //throw new UnsupportedOperationException();
-        if( a.length == 0){ // hvis tabell lengde er 0
+        if( a.length == 0){ // hvis tabell lengde er 0 - tomt tabell
             return 0;
         }
         int likeTall = 0;
@@ -143,18 +127,29 @@ public class Oblig1 {
     }
 
     ///// Oppgave 4 //////////////////////////////////////
+
+    //følgende metoder er tatt fra kompendie kapittel 1.3.9  Partisjonering og kvikksortering
+    // private static int parter0(int[] a, int v, int h, int skilleverdi) tatt fra - Programkode 1.3.9 a)
+    //private static int sParter0(int[] a, int v, int h, int indeks)     tatt fra -Programkode 1.3.9 f)
+    // metoden  kvikksortering(int[] a), kvikksortering(int[] a, int fra, int til)
+    // og kvikksortering0(int[] a, int v, int h)  tatt fra  -  1.3.9 h)
+
+
     public static void delsortering(int[] a) {
 
-        kvikksortering(a);
+        kvikksortering(a); // alle elementer i arreyet sorteres
+        // siden arrayet sortert, vet vi at annehver tall er par tall
+        // int oddetall++ skal øke hver gang vi møter en odde tall, og det skal samtidig frigjøre plass for å plassere par tall, hvis vi
+        // møter en par tall skal i++ øke istedenfor oddetall++ til og peke på neste indeks
 
         int oddetall = 0;
 
         int i = 0;
         while ( i < a.length)
         {
-            if (a[i]%2 == 0)
+            if (a[i]%2 == 0) // hvis en partall gjør ingenting
             {}
-            else {
+            else { // hvis oddetall
 
                 int temp = a[oddetall];
                 a[oddetall] = a[i];
@@ -163,12 +158,20 @@ public class Oblig1 {
             }
             i++;
         }
-        kvikksortering(a, oddetall, a.length);
+        // Etter at partallene har blitt overført fra venstre til høre, er høyre siden ferdig sortert,
+        // det er bare venstre siden med par tall som er urortert.  Oddetall variebel har telt hvor mange engeter er reservet til oddetall
+        // dette informasjon bruker for navigere hvor i arrayet par tall starter og hvor skal sortering starte og slutte
+        kvikksortering(a, oddetall, a.length); // fra odde tall til slutten av array a[fra:til>
 
 
     }
 
-    private static int parter0(int[] a, int v, int h, int skilleverdi)  //******
+    public static void bytt(int[] a, int i, int j)
+    {
+        int temp = a[i]; a[i] = a[j]; a[j] = temp;
+    }
+
+    private static int parter0(int[] a, int v, int h, int skilleverdi)
     {
         while (true)                                  // stopper når v > h
         {
@@ -179,14 +182,14 @@ public class Oblig1 {
             else  return v;  // a[v] er nåden første som ikke er mindre enn skilleverdi
         }
     }
-    private static int sParter0(int[] a, int v, int h, int indeks)      //*****
+    private static int sParter0(int[] a, int v, int h, int indeks)
     {
         bytt(a, indeks, h);           // skilleverdi a[indeks] flyttes bakerst
         int pos = parter0(a, v, h - 1, a[h]);  // partisjonerer a[v:h - 1]
         bytt(a, pos, h);              // bytter for å få skilleverdien på rett plass
         return pos;                   // returnerer posisjonen til skilleverdien
     }
-    private static void kvikksortering0(int[] a, int v, int h)  // en privat metode *****
+    private static void kvikksortering0(int[] a, int v, int h)
     {
         if (v >= h) return;  // a[v:h] er tomt eller har maks ett element
         int k = sParter0(a, v, h, (v + h)/2);  // bruker midtverdien
@@ -199,7 +202,7 @@ public class Oblig1 {
         kvikksortering0(a, fra, til - 1);  // v = fra, h = til - 1
     }
 
-    public static void kvikksortering(int[] a)   // sorterer hele tabellen  *****
+    public static void kvikksortering(int[] a)   // sorterer hele tabellen
     {
         kvikksortering0(a, 0, a.length - 1);
     }
@@ -208,17 +211,15 @@ public class Oblig1 {
     public static void rotasjon(char[] a) {
 
         //throw new UnsupportedOperationException();
-        if(a.length < 1) //
+        if(a.length < 1) // hvis vi har mindre en en index
             return;
-
+        // sparer siste element i arraye
         char sist = a[a.length-1];
 
-        //for(int j = a.length-1; j > 0; j--)
-        int j = a.length-1;
-
-        while (j > 0)
+        int j = a.length-1; // starter bakerst
+        while (j > 0)   // looper så lenge
         {
-            a[j] = a[j-1];  //
+            a[j] = a[j-1]; // indexsen til j mynker, slik beveger vi oss en enhet mot høyre
 
             j--;
         }
@@ -226,7 +227,7 @@ public class Oblig1 {
         a[0] = sist;
 
         //Printer rotert array
-        System.out.println("Array after right rotation: ");
+        System.out.println("Array etter høyre rotasjonen: ");
         for(int i = 0; i< a.length; i++){
             System.out.print(a[i] + " ");
         }
@@ -246,7 +247,13 @@ public class Oblig1 {
 
         // looper gjennom stringen
         int i = 0;
-        while (i < s.length() || i < t.length()){
+        while (i < s.length() || i < t.length()){ // så lenge s-sin eller t-sin legde er lang
+
+            // i kan ikke være større en setningene inn i stringer, det kan hende at setningene
+            // er ikke like lange derfor må vi ha en if test både på s og t stringer. Hvis dette kravet
+            // er oppfylt tar vi første bokstav fra s førs og deretter fra t stringet, og legger i vår
+            // stringFlette, deretter øker i++ og det betyr at vi beveger oss til andre bokstav in i
+            // setningen, og vi tar neste bokstav in i settningen. Sånt fortsetter helt til vi er tomt for bokstaver
 
             if (i < s.length()){
                 stringFlettet.append(s.charAt(i));
@@ -258,8 +265,8 @@ public class Oblig1 {
 
             i++;
         }
-        String ny = stringFlettet.toString();
-        return ny;
+        String ny = stringFlettet.toString(); // her lagres vår nysetning
+        return ny;// printer settningen
     }
 
     /// 7b)
@@ -279,16 +286,20 @@ public class Oblig1 {
 
         StringBuilder stringFlettet = new StringBuilder();
 
-        for (int i = 0; i < makslengde; i++) {    // går gjenno ord
-            for (int j = 0; j < s.length; j++) { // j skal gå gjennom bokstaver
+        // Her danner vi en matrise der makslengde er presentert med den største setning i arrayet det vil si rader i en matrise
+        //  Også har vi koloner som er presentert med s. length
+        for (int i = 0; i < makslengde; i++) {    //går gjennom bokstaver
+            for (int j = 0; j < s.length; j++) { // går gjennom ord
 
+                // samme test som i oppgave a) men her må vi s[j].length sjekker om ordet er større en i
                 if (s[j].length() > i) {
 
-                    stringFlettet.append(s[j].charAt(i));
+                    stringFlettet.append(s[j].charAt(i));// tar ut første bokstav fra ordet setningen
 
                 }
             }
         }
+        // Printer ut ny setning
         String ferdig = stringFlettet.toString();
         return ferdig;
 
