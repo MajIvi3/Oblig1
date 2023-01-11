@@ -35,7 +35,8 @@ Minst ombytning har vi når tall er sortert i stigende rekkefølge da har vi fle
 
 3. Hvor mange blir det i gjennomsnitt?
 Vi har situasjon der antall ombytningene kan variere fra  tabell til tabell. Det betyr at gjennomsnitt av 
-dem større enn det største av tallene foran. Formelen for å finne ut av det er : Hn − 1 ≈ log(n) – 0,423 
+dem større enn det største av tallene foran. Formelen for å finne ut av det er : $H_{n-1} \approx \log(n) - 0.423$
+ 
 (dette er også snakk om naturlige logaritmer!)
 
 
@@ -80,17 +81,22 @@ metoder fra kompendiet. Akkurat hvor koden kommer fra er grundig beskrevet i opp
 
 ## Oppgave 5
 
-1. variabel char sist lagrer den siste elemente
-2. while løkke starter å telle bakerst, og hver indeks trekkes 1. 
-Dette gjør at vi kan flytte en enhet måt høyre
-3. Første index peker måt siste som ble tatt være på i char sist variabel
+Denne algoritmen utfører en operasjon som kalles høyre rotasjon. Det tar en array som input, og den roterer alle elementene ett trinn til høyre.
+
+
+
+1. Det starter med å lagre det siste elementet i matrisen i en variabel som kalles sist'
+2. Ved hjelp av en while-loop flyttes array-elementene ett trinn til høyre ved å starte ved den siste indeksen a[a.length-1] og iterere til den første indeksen (i > 0) i hver iterasjon, det nåværende elementet tilordnes verdien av det forrige elementet, på denne måten blir alle elementene i matrisen forskjøvet ett trinn til høyre.
+3. Til slutt tilordnes det første elementet i array verdien av variabelen sist, dette setter det siste elementet som opprinnelig ble lagret til den første posisjonen til matrisen.
+
+<b>Kompleksiteten til denne algoritmen er O(n) </b>
 
 
 ## Oppgave 7
 
 a)
-1.i = 0 med dette velger vi hvilket bokstaver skal velges først fra setningene i vår ny setning
-2.Oppgaven går ut på å finne lengde på settninger(antal bokstaver) og while løkke kjører
+1. i = 0 med dette velger vi hvilket bokstaver skal velges først fra setningene i vår ny setning
+2. Oppgaven går ut på å finne lengde på settninger(antal bokstaver) og while løkke kjører
 så lenge det er bokstaver i en av de setningene.
 3. oppretter en test, der vi krever at vi skal ta ut bokstaver, en av gangen og appende de i vår nye setningen,
 het til vi når  slutten av stningen length().
@@ -104,7 +110,7 @@ A|M| | | | | |       Dette er en matrise der iXj der antall rader er maksimum le
 L| | | | | | |       og koloner er arrays lengde. 
 G|E|D|S| | | |       Sik looper ve gjennom hele arryet plokker opp først bokstav fra hver ord. I første
 O|R|A|T|K|R|R|       omløp. Etterpå øker i++ og vi beveger os videre til neste bokstav i alle ordene, og
-''| | | | | | |     dette fortsetter helt til vi er ferdig
+'| | | | | | |     dette fortsetter helt til vi er ferdig
 R|T|R|T|E| | |      Dette er en liten feil obligen når det gjeleder ord fordelig av ord og settning, 
 I|O| | | | | |      men tenegangen er sånn som beskrevet
 T|G|A|U|U| | |
@@ -112,4 +118,4 @@ T|G|A|U|U| | |
 
 
 
-I 
+
