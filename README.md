@@ -141,6 +141,7 @@ Til slutt oppretter den en ny streng ved å kalle *toString()* -metoden til stre
 ***Tidskompleksiteten til funksjonen er*** $O(nm)$
 
 
-
+***Kilde: Algoritmer og datastrukturer med Java Nettbasert lærebok***</br>
+***Link:*** https://www.cs.hioa.no/~ulfu/appolonius/?fbclid=IwAR2DTWVDZ2qLxNY1SU6BHgtVg0J0pyZYsN1ZlkTxq34tTPfcHJeAdPnodSk
 
 
