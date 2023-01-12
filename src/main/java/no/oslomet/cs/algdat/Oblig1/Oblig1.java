@@ -241,10 +241,7 @@ public class Oblig1 {
         }
     }
 
-    ///// Oppgave 6 //////////////////////////////////////
-    public static void rotasjon(char[] a, int k) {
-        throw new UnsupportedOperationException();
-    }
+    
 
     ///// Oppgave 7 //////////////////////////////////////
     /// 7a)
@@ -257,11 +254,6 @@ public class Oblig1 {
         int i = 0;
         while (i < s.length() || i < t.length()){ // så lenge s-sin eller t-sin legde er lang
 
-            // i kan ikke være større en setningene inn i stringer, det kan hende at setningene
-            // er ikke like lange derfor må vi ha en if test både på s og t strenget. Hvis dette kravet
-            // er oppfylt tar vi første bokstav fra s først og deretter fra t strenget, og legger i vår
-            // stringFlette, deretter øker i++ og det betyr at vi beveger oss til andre bokstav in i
-            // setningen, og vi tar neste bokstav in i setningen. Sånt fortsetter helt til vi er tomt for bokstaver
 
             if (i < s.length()){
                 stringFlettet.append(s.charAt(i));
